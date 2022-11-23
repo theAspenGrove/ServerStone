@@ -1,0 +1,6 @@
+name: ServerStone
+version: '${project.version}'
+main: net.mov51.serverstone.ServerStone
+api-version: 1.19
+authors: [ mov51 ]
+description: Send a redstone signal from the server!
