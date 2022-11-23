@@ -4,3 +4,20 @@ main: net.mov51.serverstone.ServerStone
 api-version: 1.19
 authors: [ mov51 ]
 description: Send a redstone signal from the server!
+commands:
+    serverstone:
+        description: Send a redstone signal from the server!
+        usage: /serverstone <power>
+        aliases: [ss]
+        permission: serverstone.use
+        permission-message: You do not have permission to use this command!
+        default: true
+        tab-complete: [serverstone]
+    serverstone power:
+        description: Send a redstone signal from the server!
+        usage: /serverstone power
+        aliases: [ss power]
+        permission: serverstone.power
+        permission-message: You do not have permission to use this command!
+        default: true
+        tab-complete: [serverstone power]
