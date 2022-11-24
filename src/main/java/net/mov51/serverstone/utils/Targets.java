@@ -17,6 +17,26 @@ public class Targets {
 
     public Targets(){
         //constructor
+        this.load();
+    }
+
+    public void save(){
+        //save the list of targets to the config
+        ServerStone.config.set("targets", targetedBlocks);
+        ServerStone.plugin.saveConfig();
+    }
+
+    public void load(){
+        //load the list of targets from the config
+        List<?> list = ServerStone.config.getList("targets", null);
+        if(list != null){
+            for(Object o : list){
+                if(o instanceof Location){
+                    targetedBlocks.add((Location) o);
+                    System.out.println("Loaded target: " + o);
+                }
+            }
+        }
     }
 
     public void add(Location location){
