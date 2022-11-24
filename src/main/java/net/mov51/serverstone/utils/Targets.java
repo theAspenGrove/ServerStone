@@ -6,9 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Powerable;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class Targets {
@@ -48,11 +46,6 @@ public class Targets {
     public void remove(Location location){
         this.targetedBlocks.remove(location);
         System.out.println("Removed target: " + location);
-    }
-
-    public void clear(){
-        this.targetedBlocks.clear();
-        System.out.println("Targets cleared");
     }
 
     public void powerAll(){
