@@ -22,6 +22,7 @@ public class Targets {
 
     public void save(){
         //save the list of targets to the config
+        ServerStone.config.set("targets", null);
         ServerStone.config.set("targets", targetedBlocks);
         ServerStone.plugin.saveConfig();
     }
