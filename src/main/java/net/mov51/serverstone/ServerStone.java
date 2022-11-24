@@ -1,6 +1,7 @@
 package net.mov51.serverstone;
 
 import net.mov51.serverstone.commands.ServerStoneCommand;
+import net.mov51.serverstone.utils.ConfigHelper;
 import net.mov51.serverstone.utils.Targets;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
@@ -12,14 +13,14 @@ public final class ServerStone extends JavaPlugin {
     public static Targets targets;
     public static Plugin plugin = null;
 
-    public static FileConfiguration config = null;
+    public static ConfigHelper configHelper = null;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
         plugin = this;
         //create config
-        config = this.getConfig();
+        configHelper = new ConfigHelper(this.getConfig());
         //register commands
         Objects.requireNonNull(this.getCommand("serverstone")).setExecutor(new ServerStoneCommand());
         //register events
@@ -34,5 +35,6 @@ public final class ServerStone extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        targets.save();
     }
 }

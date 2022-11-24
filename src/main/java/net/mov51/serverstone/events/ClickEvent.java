@@ -8,6 +8,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
+import static net.mov51.serverstone.ServerStone.configHelper;
 import static net.mov51.serverstone.ServerStone.targets;
 
 public class ClickEvent implements Listener {
@@ -25,12 +26,12 @@ public class ClickEvent implements Listener {
             if (block.getType() == Material.LEVER) {
                 //remove target
                 if(targets.contains(block.getLocation())){
-                    block.getLocation().getWorld().dropItemNaturally(block.getLocation(),new ItemStack(Material.NETHER_STAR));
+                    block.getLocation().getWorld().dropItemNaturally(block.getLocation(),configHelper.getUpgradeItem());
                     targets.remove(block.getLocation());
                     event.setCancelled(true);
                     System.out.println("Removed target: " + block.getLocation());
                 }else {
-                    if (item.getType() == Material.NETHER_STAR) {
+                    if (item.getType() == configHelper.getUpgradeMaterial()) {
                         //add target
                         targets.add(block.getLocation());
                         item.setAmount(item.getAmount() - 1);

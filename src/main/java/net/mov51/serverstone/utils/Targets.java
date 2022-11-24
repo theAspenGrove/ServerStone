@@ -9,6 +9,8 @@ import org.bukkit.block.data.Powerable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static net.mov51.serverstone.ServerStone.configHelper;
+
 public class Targets {
     //list of block targets
     private List<Location> targetedBlocks = new ArrayList<>();
@@ -17,19 +19,18 @@ public class Targets {
         //constructor
         this.load();
         //save targets every 5 minutes
-        ServerStone.plugin.getServer().getScheduler().scheduleSyncRepeatingTask(ServerStone.plugin, this::save, 0L, 6000L);
+        ServerStone.plugin.getServer().getScheduler().scheduleSyncRepeatingTask(ServerStone.plugin, this::save, 0L, configHelper.getSaveInterval());
     }
 
     public void save(){
         //save the list of targets to the config
-        ServerStone.config.set("targets", null);
-        ServerStone.config.set("targets", targetedBlocks);
-        ServerStone.plugin.saveConfig();
+        configHelper.saveTargets(targetedBlocks);
+        System.out.println("Saved ServerStone targets");
     }
 
     public void load(){
         //load the list of targets from the config
-        List<?> list = ServerStone.config.getList("targets", null);
+        List<?> list = configHelper.getTargets();
         if(list != null){
             for(Object o : list){
                 if(o instanceof Location){
