@@ -31,7 +31,7 @@ public class Targets {
         if(list != null){
             for(Object o : list){
                 if(o instanceof Location){
-                    targetedBlocks.add((Location) o);
+                    this.targetedBlocks.add((Location) o);
                     System.out.println("Loaded target: " + o);
                 }
             }
