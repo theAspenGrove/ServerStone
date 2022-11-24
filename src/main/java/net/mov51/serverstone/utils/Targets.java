@@ -16,6 +16,8 @@ public class Targets {
     public Targets(){
         //constructor
         this.load();
+        //save targets every 5 minutes
+        ServerStone.plugin.getServer().getScheduler().scheduleSyncRepeatingTask(ServerStone.plugin, this::save, 0L, 6000L);
     }
 
     public void save(){
