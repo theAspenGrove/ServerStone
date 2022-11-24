@@ -7,7 +7,7 @@ description: Send a redstone signal from the server!
 commands:
     serverstone:
         description: Send a redstone signal from the server!
-        usage: /serverstone <power|depower>
+        usage: /serverstone <power|depower|toggle>
         permission: serverstone.use
         permission-message: You do not have permission to use this command!
         default: false
