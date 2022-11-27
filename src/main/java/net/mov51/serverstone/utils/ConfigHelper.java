@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class ConfigHelper {
 
-    private FileConfiguration config = null;
+    private FileConfiguration config;
 
     public ConfigHelper(FileConfiguration fConfig){
         this.config = fConfig;
