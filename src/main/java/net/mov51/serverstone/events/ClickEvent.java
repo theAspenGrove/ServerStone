@@ -29,7 +29,6 @@ public class ClickEvent implements Listener {
                     block.getLocation().getWorld().dropItemNaturally(block.getLocation(),configHelper.getUpgradeItem());
                     targets.remove(block.getLocation());
                     event.setCancelled(true);
-                    System.out.println("Removed target: " + block.getLocation());
                 }else {
                     if (item.getType() == configHelper.getUpgradeMaterial()) {
                         //add target

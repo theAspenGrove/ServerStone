@@ -15,7 +15,6 @@ public class BreakEvent implements Listener {
             if (targets.contains(event.getBlock().getLocation())) {
                 event.getBlock().getLocation().getWorld().dropItemNaturally(event.getBlock().getLocation(), configHelper.getUpgradeItem());
                 targets.remove(event.getBlock().getLocation());
-                System.out.println("Removed target: " + event.getBlock().getLocation());
             }
         }
     }

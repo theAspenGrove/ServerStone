@@ -25,7 +25,6 @@ public class Targets {
     public void save(){
         //save the list of targets to the config
         configHelper.saveTargets(targetedBlocks);
-        System.out.println("Saved ServerStone targets");
     }
 
     public void load(){
@@ -35,7 +34,6 @@ public class Targets {
             for(Object o : list){
                 if(o instanceof Location){
                     this.targetedBlocks.add((Location) o);
-                    System.out.println("Loaded target: " + o);
                 }
             }
         }
@@ -43,12 +41,10 @@ public class Targets {
 
     public void add(Location location){
         this.targetedBlocks.add(location);
-        System.out.println("Added target: " + location);
     }
 
     public void remove(Location location){
         this.targetedBlocks.remove(location);
-        System.out.println("Removed target: " + location);
     }
 
     public void powerAll(){
@@ -82,7 +78,6 @@ public class Targets {
                 location.getBlock().setBlockData(powerable);
             }
         }else{
-            System.out.println("Target is not a lever: " + location);
             this.remove(location);
         }
     }
@@ -96,7 +91,6 @@ public class Targets {
                 location.getBlock().setBlockData(powerable);
             }
         }else{
-            System.out.println("Target is not a lever: " + location);
             this.remove(location);
         }
     }
