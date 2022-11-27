@@ -26,8 +26,7 @@ public class ServerStoneCommand implements CommandExecutor {
                 return true;
             default:
                 sender.sendMessage("Invalid sub-command");
-                break;
+                return false;
         }
-        return false;
     }
 }
