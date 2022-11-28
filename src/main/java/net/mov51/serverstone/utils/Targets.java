@@ -70,28 +70,34 @@ public class Targets {
     }
 
     private void setPowerState(Location location, boolean state){
-        if(location.getBlock().getType() == Material.LEVER){
-            BlockData blockData = location.getBlock().getBlockData();
-            if(blockData instanceof Powerable){
-                Powerable powerable = (Powerable) blockData;
-                powerable.setPowered(state);
-                location.getBlock().setBlockData(powerable);
+        //only set the power state if the block is loaded
+        if(location.isWorldLoaded()){
+            if(location.getBlock().getType() == Material.LEVER){
+                BlockData blockData = location.getBlock().getBlockData();
+                if(blockData instanceof Powerable){
+                    Powerable powerable = (Powerable) blockData;
+                    powerable.setPowered(state);
+                    location.getBlock().setBlockData(powerable);
+                }
+            }else{
+                this.remove(location);
             }
-        }else{
-            this.remove(location);
         }
     }
 
     private void togglePowerState(Location location){
-        if(location.getBlock().getType() == Material.LEVER){
-            BlockData blockData = location.getBlock().getBlockData();
-            if(blockData instanceof Powerable){
-                Powerable powerable = (Powerable) blockData;
-                powerable.setPowered(!powerable.isPowered());
-                location.getBlock().setBlockData(powerable);
+        //only toggle the power state if the block is loaded
+        if(location.isWorldLoaded()) {
+            if (location.getBlock().getType() == Material.LEVER) {
+                BlockData blockData = location.getBlock().getBlockData();
+                if (blockData instanceof Powerable) {
+                    Powerable powerable = (Powerable) blockData;
+                    powerable.setPowered(!powerable.isPowered());
+                    location.getBlock().setBlockData(powerable);
+                }
+            } else {
+                this.remove(location);
             }
-        }else{
-            this.remove(location);
         }
     }
 }
