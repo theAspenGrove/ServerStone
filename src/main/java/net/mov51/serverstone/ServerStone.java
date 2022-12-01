@@ -1,6 +1,7 @@
 package net.mov51.serverstone;
 
 import net.mov51.serverstone.commands.ServerStoneCommand;
+import net.mov51.serverstone.commands.ServerStoneTabComplete;
 import net.mov51.serverstone.render.StoneMarker;
 import net.mov51.serverstone.utils.ConfigHelper;
 import net.mov51.serverstone.utils.Targets;
@@ -25,6 +26,7 @@ public final class ServerStone extends JavaPlugin {
         stoneMarker = new StoneMarker();
         //register commands
         Objects.requireNonNull(this.getCommand("serverstone")).setExecutor(new ServerStoneCommand());
+        Objects.requireNonNull(this.getCommand("serverstone")).setTabCompleter(new ServerStoneTabComplete());
         //register events
         getServer().getPluginManager().registerEvents(new net.mov51.serverstone.events.ClickEvent(), this);
         getServer().getPluginManager().registerEvents(new net.mov51.serverstone.events.BreakEvent(), this);

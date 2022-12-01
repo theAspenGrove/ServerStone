@@ -47,21 +47,21 @@ public class Targets {
         this.targetedBlocks.remove(location);
     }
 
-    public void powerAll(){
+    public void powerAll(boolean checkForLoaded){
         for(Location blockL : this.targetedBlocks){
-            setPowerState(blockL,true);
+            setPowerState(blockL,true,checkForLoaded);
         }
     }
 
-    public void dePowerAll(){
+    public void dePowerAll(boolean checkForLoaded){
         for(Location blockL : this.targetedBlocks){
-            setPowerState(blockL,false);
+            setPowerState(blockL,false,checkForLoaded);
         }
     }
 
-    public void toggleAll(){
+    public void toggleAll(boolean checkForLoaded){
         for(Location blockL : this.targetedBlocks){
-            togglePowerState(blockL);
+            togglePowerState(blockL,checkForLoaded);
         }
     }
 
@@ -69,35 +69,41 @@ public class Targets {
         return this.targetedBlocks.contains(location);
     }
 
-    private void setPowerState(Location location, boolean state){
+    private void setPowerState(Location location, boolean state, boolean checkForLoaded){
         //only set the power state if the block is loaded
-        if(location.isWorldLoaded()){
-            if(location.getBlock().getType() == Material.LEVER){
-                BlockData blockData = location.getBlock().getBlockData();
-                if(blockData instanceof Powerable){
-                    Powerable powerable = (Powerable) blockData;
-                    powerable.setPowered(state);
-                    location.getBlock().setBlockData(powerable);
-                }
-            }else{
-                this.remove(location);
+        if(checkForLoaded){
+            if(!location.isWorldLoaded()){
+                return;
             }
+        }
+        if(location.getBlock().getType() == Material.LEVER){
+            BlockData blockData = location.getBlock().getBlockData();
+            if(blockData instanceof Powerable){
+                Powerable powerable = (Powerable) blockData;
+                powerable.setPowered(state);
+                location.getBlock().setBlockData(powerable);
+            }
+        }else{
+            this.remove(location);
         }
     }
 
-    private void togglePowerState(Location location){
+    private void togglePowerState(Location location, boolean checkForLoaded){
         //only toggle the power state if the block is loaded
-        if(location.isWorldLoaded()) {
-            if (location.getBlock().getType() == Material.LEVER) {
-                BlockData blockData = location.getBlock().getBlockData();
-                if (blockData instanceof Powerable) {
-                    Powerable powerable = (Powerable) blockData;
-                    powerable.setPowered(!powerable.isPowered());
-                    location.getBlock().setBlockData(powerable);
-                }
-            } else {
-                this.remove(location);
+        if(checkForLoaded){
+            if(!location.isWorldLoaded()){
+                return;
             }
+        }
+        if (location.getBlock().getType() == Material.LEVER) {
+            BlockData blockData = location.getBlock().getBlockData();
+            if (blockData instanceof Powerable) {
+                Powerable powerable = (Powerable) blockData;
+                powerable.setPowered(!powerable.isPowered());
+                location.getBlock().setBlockData(powerable);
+            }
+        } else {
+            this.remove(location);
         }
     }
 }

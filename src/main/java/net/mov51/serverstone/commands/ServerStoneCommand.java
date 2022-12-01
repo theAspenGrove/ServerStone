@@ -11,16 +11,37 @@ public class ServerStoneCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        if(args.length == 0){
+            sender.sendMessage("§cUsage: /serverstone <toggle | power | depower | save> [loaded | all]");
+            return true;
+        }
         switch (args[0]) {
             case "toggle":
-                targets.toggleAll();
-                return true;
+                if(args.length == 1 || (args.length == 2 && args[1].equals("loaded"))){
+                    targets.toggleAll(true);
+                    return true;
+                }else if (args.length == 2 && args[1].equals("all")) {
+                    targets.toggleAll(false);
+                    return true;
+                }
+                return false;
             case "power":
-                targets.powerAll();
-                return true;
+                if(args.length == 1|| (args.length == 2 && args[1].equals("loaded"))){
+                    targets.powerAll(true);
+                    return true;
+                }else if (args.length == 2 && args[1].equals("all")) {
+                    targets.powerAll(false);
+                    return true;
+                }
+                return false;
             case "depower":
-                targets.dePowerAll();
-                return true;
+                if(args.length == 1 || (args.length == 2 && args[1].equals("loaded"))){
+                    targets.dePowerAll(true);
+                    return true;
+                }else if (args.length == 2 && args[1].equals("all")) {
+                    targets.dePowerAll(false);
+                    return true;
+                }
             case "save":
                 targets.save();
                 return true;
