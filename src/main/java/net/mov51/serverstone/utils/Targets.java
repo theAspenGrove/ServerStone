@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static net.mov51.serverstone.ServerStone.configHelper;
+import static net.mov51.serverstone.utils.Announce.announce;
 
 public class Targets {
     //list of block targets
@@ -82,6 +83,7 @@ public class Targets {
                 Powerable powerable = (Powerable) blockData;
                 powerable.setPowered(state);
                 location.getBlock().setBlockData(powerable);
+                announce(location, location.getBlock().getType());
             }
         }else{
             this.remove(location);
@@ -101,6 +103,7 @@ public class Targets {
                 Powerable powerable = (Powerable) blockData;
                 powerable.setPowered(!powerable.isPowered());
                 location.getBlock().setBlockData(powerable);
+                announce(location, location.getBlock().getType());
             }
         } else {
             this.remove(location);

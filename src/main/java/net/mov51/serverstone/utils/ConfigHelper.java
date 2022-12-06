@@ -20,6 +20,7 @@ public class ConfigHelper {
         config.addDefault("upgradeMaterial", "NETHER_STAR");
         config.addDefault("particleInterval", 10);
         config.addDefault("particle", "COMPOSTER");
+        config.addDefault("AnnouncementRange", 20);
         config.options().copyDefaults(true);
         ServerStone.plugin.saveConfig();
 
@@ -47,6 +48,9 @@ public class ConfigHelper {
     }
     public Particle getParticle(){
         return Particle.valueOf(this.config.getString("particle"));
+    }
+    public int getAnnouncementRange(){
+        return this.config.getInt("AnnouncementRange");
     }
 
 }
