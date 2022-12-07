@@ -1,5 +1,6 @@
 package net.mov51.serverstone;
 
+import net.mov51.periderm.chat.AspenChatHelper;
 import net.mov51.serverstone.commands.ServerStoneCommand;
 import net.mov51.serverstone.commands.ServerStoneTabComplete;
 import net.mov51.serverstone.render.StoneMarker;
@@ -15,6 +16,8 @@ public final class ServerStone extends JavaPlugin {
     public static Plugin plugin = null;
     public static ConfigHelper configHelper = null;
     public static StoneMarker stoneMarker = null;
+    public static AspenChatHelper chatHelper = null;
+    public static final String pluginPrefix = "&8[&6ServerStone&8] &r";
 
     @Override
     public void onEnable() {
@@ -22,6 +25,8 @@ public final class ServerStone extends JavaPlugin {
         plugin = this;
         //create config
         configHelper = new ConfigHelper(this.getConfig());
+        //create chat helper
+        chatHelper = new AspenChatHelper(pluginPrefix);
         //load StoneMarker
         stoneMarker = new StoneMarker();
         //register commands
